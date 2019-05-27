@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.heaven.elegy</groupId>
-	<artifactId>study-general</artifactId>
+	<artifactId>study_general</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0</version>
 

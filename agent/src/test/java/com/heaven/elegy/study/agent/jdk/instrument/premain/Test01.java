@@ -1,4 +1,4 @@
-package com.heaven.elegy.study.agent.jdk.instrument;
+package com.heaven.elegy.study.agent.jdk.instrument.premain;
 
 import org.junit.Test;
 

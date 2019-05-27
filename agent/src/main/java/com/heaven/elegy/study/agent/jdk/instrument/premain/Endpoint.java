@@ -1,8 +1,9 @@
-package com.heaven.elegy.study.agent.jdk.instrument;
+package com.heaven.elegy.study.agent.jdk.instrument.premain;
 
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
+import java.lang.instrument.UnmodifiableClassException;
 
 /**
  * Agent入口
@@ -17,8 +18,8 @@ public class Endpoint {
 	 * @param args
 	 * @param inst
 	 */
-	public static void premain(String args, Instrumentation inst) {
-		inst.addTransformer(new CoreClassFileTransformer());
+	public static void premain(String args, Instrumentation inst) throws UnmodifiableClassException {
+		inst.addTransformer(new CoreClassFileTransformer(), true);
 	}
 
 }

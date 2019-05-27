@@ -1,4 +1,4 @@
-package com.heaven.elegy.study.agent.jdk.instrument;
+package com.heaven.elegy.study.agent.jdk.instrument.premain;
 
 import javassist.*;
 
@@ -20,8 +20,10 @@ public class CoreClassFileTransformer implements ClassFileTransformer {
 	@Override
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
+		System.out.println("扫描类:" + className);
+
 		//只处理本包下的类BusinessService
-		if(className.equals("com/heaven/elegy/study/agent/jdk/instrument/BusinessService")) {
+		if(className.equals("com/heaven/elegy/study/agent/jdk/instrument/premain/BusinessService")) {
 			// 进行类操作
 			return transformer.transform(classfileBuffer);
 		}else {
