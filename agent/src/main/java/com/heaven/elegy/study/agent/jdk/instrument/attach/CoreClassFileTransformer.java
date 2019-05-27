@@ -9,7 +9,7 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 /**
- * 使用java Attach机制进行类修改(与premain包下的{@link com.heaven.elegy.study.agent.jdk.instrument.premain.CoreClassFileTransformer})内容大体相同
+ * 使用java Attach机制进行类修改(与premain包下的{@link com.heaven.elegy.study.agent.jdk.instrument.agent.CoreClassFileTransformer})内容大体相同
  * @author li.xiaoxi
  * @date 2019/05/23 13:59
  */

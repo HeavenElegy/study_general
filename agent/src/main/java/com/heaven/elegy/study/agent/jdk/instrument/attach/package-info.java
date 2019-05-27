@@ -5,7 +5,7 @@
  * <p>总结:</p>
  * <ol>
  *     <li>编写操作类。如{@link com.heaven.elegy.study.agent.jdk.instrument.attach.Operation Operation}。进行代理包的加载</li>
- *     <li>编写入口类。{@link com.heaven.elegy.study.agent.jdk.instrument.attach.Endpoint Endpoint}。除入口方法名不同。其他内容与基于agent的{@link com.heaven.elegy.study.agent.jdk.instrument.premain.Endpoint Endpoint}相同。且作用相同</li>
+ *     <li>编写入口类。{@link com.heaven.elegy.study.agent.jdk.instrument.attach.Endpoint Endpoint}。除入口方法名不同。其他内容与基于agent的{@link com.heaven.elegy.study.agent.jdk.instrument.agent.Endpoint Endpoint}相同。且作用相同</li>
  *     <li>编写转换器。与基于agent的一样</li>
  *     <li>添加manifest描述Agent-Class</li>
  *     <li>直接运行即可看到效果</li>

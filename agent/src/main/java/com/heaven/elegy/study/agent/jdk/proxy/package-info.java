@@ -10,7 +10,7 @@
  * </ol>
  * <p>更新</p>
  * <ol>
- *     <li>添加了基于agent的代理相关类{@link com.heaven.elegy.study.agent.jdk.proxy.agent.Endpoint Endpoint}(需要添加到命令行中进行启动)与{@link com.heaven.elegy.study.agent.jdk.proxy.agent.CoreClassFileTransformer CoreClassFileTransformer}，用于输出代理类字节码。</li>
+ *     <li>添加了基于agent的代理相关类{@link com.heaven.elegy.study.agent.jdk.proxy.agent.Endpoint Endpoint}与{@link com.heaven.elegy.study.agent.jdk.proxy.agent.CoreClassFileTransformer CoreClassFileTransformer}，用于输出代理类字节码。<b>具体配置同{@link com.heaven.elegy.study.agent.jdk.instrument.agent.Endpoint Endpoint}<b/></li>
  * </ol>
  * @author li.xiaoxi
  * @date 2019/05/22 13:23

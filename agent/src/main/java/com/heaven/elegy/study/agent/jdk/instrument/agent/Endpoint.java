@@ -1,4 +1,4 @@
-package com.heaven.elegy.study.agent.jdk.instrument.premain;
+package com.heaven.elegy.study.agent.jdk.instrument.agent;
 
 
 import java.lang.instrument.ClassFileTransformer;

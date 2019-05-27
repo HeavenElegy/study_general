@@ -86,7 +86,7 @@
 					<archive>
 						<manifestEntries>
 							<!-- 基于premain -->
-							<Premain-Class>com.heaven.elegy.study.agent.jdk.instrument.premain.Endpoint</Premain-Class>
+							<Premain-Class>com.heaven.elegy.study.agent.jdk.instrument.agent.Endpoint</Premain-Class>
 							<!-- 基于attach -->
 							<Agent-Class>com.heaven.elegy.study.agent.jdk.instrument.attach.Endpoint</Agent-Class>
 
