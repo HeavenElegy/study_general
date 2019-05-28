@@ -16,23 +16,62 @@ public class Operation {
 	/**
 	 * 代理jar路径(这里是model的jar包)
 	 */
-	private static final String JAR = "D:\\Coder\\J2EE_Projects\\study\\study_general\\agent\\target\\agent.jar";
+	private String JAR;
+
+	public Operation(String JAR) {
+		this.JAR = JAR;
+	}
 
 	/**
-	 * 通过{@link VirtualMachine VirtualMachine} 注册代理jar包
+	 * 装载代理
 	 */
-	public static void execute() {
-
+	public void load() {
 		List<VirtualMachineDescriptor> vmList = VirtualMachine.list();
 		for (VirtualMachineDescriptor vmd : vmList) {
-			try {
-				VirtualMachine vm = VirtualMachine.attach(vmd.id());
-				vm.loadAgent(JAR);
-				vm.detach();
-			} catch (AttachNotSupportedException | IOException | AgentLoadException | AgentInitializationException e) {
-//				e.printStackTrace();
-//				System.err.println("代理加载失败");
-			}
+			load(vmd.id());
+		}
+	}
+
+	/**
+	 * 装载代理
+	 * @param pid	进程id
+	 */
+	public void load(String pid) {
+		load(pid, "affect=load");
+	}
+
+	/**
+	 * 卸载
+	 */
+	public void unload() {
+		List<VirtualMachineDescriptor> vmList = VirtualMachine.list();
+		for (VirtualMachineDescriptor vmd : vmList) {
+			unload(vmd.id());
+		}
+	}
+
+	/**
+	 * 卸载
+	 * @param pid	进程id
+	 */
+	public void unload(String pid) {
+		load(pid, "affect=unload");
+	}
+
+	/**
+	 * 根据进程id，加载代理
+	 * @param pid	进程id
+	 * @param params	参数
+	 */
+	private void load(String pid, String params) {
+
+		try {
+			VirtualMachine vm = VirtualMachine.attach(pid);
+			vm.loadAgent(JAR, params);
+			vm.detach();
+		} catch (AttachNotSupportedException | IOException | AgentLoadException | AgentInitializationException e) {
+			System.err.println("代理加载失败");
+			e.printStackTrace();
 		}
 	}
 }

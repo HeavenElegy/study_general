@@ -14,7 +14,7 @@ public class Endpoint {
 	 * 约定入口方法
 	 */
 	public static void agentmain(String agentArgs, Instrumentation inst) throws UnmodifiableClassException {
-		inst.addTransformer(new CoreClassFileTransformer(), true);
+		inst.addTransformer(new CoreClassFileTransformer(agentArgs), true);
 		inst.retransformClasses(BusinessService.class);
 	}
 }

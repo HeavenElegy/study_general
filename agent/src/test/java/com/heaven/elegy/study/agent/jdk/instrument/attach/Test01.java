@@ -24,7 +24,17 @@ public class Test01 {
 	 * 动态修改类方法
 	 */
 	@Test
-	public void change() {
-		Operation.execute();
+	public void load() {
+		Operation operation = new Operation("D:\\Coder\\J2EE_Projects\\study\\study_general\\agent\\target\\agent.jar");
+		operation.load();
+	}
+
+	/**
+	 * 还原被修改的类
+	 */
+	@Test
+	public void unload() {
+		Operation operation = new Operation("D:\\Coder\\J2EE_Projects\\study\\study_general\\agent\\target\\agent.jar");
+		operation.unload();
 	}
 }

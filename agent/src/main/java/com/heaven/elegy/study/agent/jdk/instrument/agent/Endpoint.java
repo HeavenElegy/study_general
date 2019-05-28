@@ -18,7 +18,7 @@ public class Endpoint {
 	 * @param args
 	 * @param inst
 	 */
-	public static void premain(String args, Instrumentation inst) throws UnmodifiableClassException {
+	public static void premain(String args, Instrumentation inst) {
 		inst.addTransformer(new CoreClassFileTransformer(), true);
 	}
 
