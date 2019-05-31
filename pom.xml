@@ -45,6 +45,7 @@
 
 	<modules>
 		<module>agent</module>
+		<module>message_broker</module>
 	</modules>
 
 	<build>

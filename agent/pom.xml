@@ -90,9 +90,9 @@
 							<!-- 基于attach -->
 							<Agent-Class>com.heaven.elegy.study.agent.jdk.instrument.attach.Endpoint</Agent-Class>
 
-							<!-- 允许重新定义Class TODO 具体差别带查看 -->
+							<!-- 允许重新定义Class TODO 具体差别待查看 -->
 							<Can-Redefine-Classes>true</Can-Redefine-Classes>
-							<!-- 允许转化定义Class TODO 具体差别带查看-->
+							<!-- 允许转化定义Class TODO 具体差别待查看-->
 							<Can-Retransform-Classes>true</Can-Retransform-Classes>
 
 							<!-- 以agent的方式，输出基于java proxy的动态代理类的字节码。所以在这里进行配置 -->
