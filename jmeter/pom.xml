@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>study_general</artifactId>
+		<groupId>com.heaven.elegy</groupId>
+		<version>1.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>jmeter</artifactId>
+
+	<dependencies>
+		<!--&lt;!&ndash; Groovy支持 &ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>org.codehaus.groovy</groupId>-->
+			<!--<artifactId>groovy-all</artifactId>-->
+			<!--<version>2.5.7</version>-->
+			<!--<type>pom</type>-->
+		<!--</dependency>-->
+
+		<!-- 日志框架 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<!-- 序列化框架 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- JMeter相关依赖 -->
+		<dependency>
+			<groupId>org.apache.jmeter</groupId>
+			<artifactId>ApacheJMeter_http</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>org.apache-extras.beanshell</groupId>-->
+			<!--<artifactId>bsh</artifactId>-->
+			<!--<version>2.0b6</version>-->
+		<!--</dependency>-->
+
+		<!-- 加密包 -->
+		<dependency>
+			<groupId>com.zhongrong.zhonghe</groupId>
+			<artifactId>cipher</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/lib/cipher-1.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<outputDirectory>D:\Coder\apache-jmeter-5.1.1\lib\ext\xiaopao</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
