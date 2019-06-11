@@ -14,12 +14,12 @@ public class Send {
 	/**
 	 * 目标队列名
 	 */
-	public static final String QUEUE_NAME = "hello";
+	private static final String QUEUE_NAME = "hello";
 
 	/**
 	 * 要发送的消息
 	 */
-	public static final String MESSAGE = "Hello World";
+	private static final String MESSAGE = "Hello World";
 
 
 	/**

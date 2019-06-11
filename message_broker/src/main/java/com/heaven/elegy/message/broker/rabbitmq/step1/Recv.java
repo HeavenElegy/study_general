@@ -3,6 +3,7 @@ package com.heaven.elegy.message.broker.rabbitmq.step1;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 队列消费者
@@ -14,7 +15,7 @@ public class Recv {
 	/**
 	 * 目标队列名
 	 */
-	public static final String QUEUE_NAME = "hello";
+	private static final String QUEUE_NAME = "hello";
 
 	public static void main(String[] args) throws Exception {
 
@@ -35,7 +36,7 @@ public class Recv {
 		);
 
 		// 创建一个回调方法。用于异步接收来自消息队列的数据
-		DeliverCallback callback = (consumerTag, message) -> System.out.println("consumerTag:" + consumerTag + ", message:" + new String(message.getBody(), "UTF-8"));
+		DeliverCallback callback = (consumerTag, message) -> System.out.println("consumerTag:" + consumerTag + ", message:" + new String(message.getBody(), StandardCharsets.UTF_8));
 
 		// 绑定消费者
 		channel.basicConsume(

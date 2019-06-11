@@ -4,7 +4,6 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
-import org.apache.commons.lang3.RandomUtils;
 
 /**
  * 向消息队列中发送消息(发送者、生产者)
@@ -22,12 +21,12 @@ public class Send {
 	/**
 	 * 目标队列名
 	 */
-	public static final String QUEUE_NAME = "task_queue";
+	private static final String QUEUE_NAME = "task_queue";
 
 	/**
 	 * 要发送的消息
 	 */
-	public static final String MESSAGE = "Hello World";
+	private static final String MESSAGE = "Hello World";
 	/**
 	 * 队列持久化
 	 */

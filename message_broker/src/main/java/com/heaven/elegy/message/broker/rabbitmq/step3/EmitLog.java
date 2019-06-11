@@ -6,10 +6,8 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
-import java.util.concurrent.TimeoutException;
 
 /**
  * 基于<code>publish/subscribe</code>模式，向消息队列中发送日志消息(其实是经由exchange绑定)
@@ -28,13 +26,13 @@ public class EmitLog {
 	 * 目标routingKey
 	 * <p>用于指定exchange</p>
 	 */
-	public static final String EXCHANGE_NAME = "logs";
+	private static final String EXCHANGE_NAME = "logs";
 	/**
 	 * 要发送的消息
 	 */
-	public static final String MESSAGE = "Hello World";
+	private static final String MESSAGE = "Hello World";
 
-	public static void main(String[] args) throws IOException, TimeoutException {
+	public static void main(String[] args) {
 
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("127.0.0.1");

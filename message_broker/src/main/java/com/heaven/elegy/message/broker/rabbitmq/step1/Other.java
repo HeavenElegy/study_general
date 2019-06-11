@@ -4,13 +4,15 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
+import java.nio.charset.StandardCharsets;
+
 
 /**
  * 用于执行对step1中的一些疑问，以代码的方式进行测试
  * @author li.xiaoxi
  * @date 2019/06/10 15:23
  */
-public class Other {
+class Other {
 
 
 
@@ -22,14 +24,14 @@ public class Other {
 	 *     <li>基于发送失败的情况。客户端没有返回任何的异常</li>
 	 * </ol>
 	 */
-	public static void pushForNotQueueDeclare() {
+	static void pushForNotQueueDeclare() {
 
 		// 在创建连接与渠道后，直接进行消息push。而不是先申请一个queue
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("127.0.01");
 		try (Connection connection = factory.newConnection()){
 			Channel channel = connection.createChannel();
-			channel.basicPublish("", "test01", null, "test01".getBytes("UTF-8"));
+			channel.basicPublish("", "test01", null, "test01".getBytes(StandardCharsets.UTF_8));
 		}catch (Throwable e) {
 			e.printStackTrace();
 			throw new IllegalStateException(e);
