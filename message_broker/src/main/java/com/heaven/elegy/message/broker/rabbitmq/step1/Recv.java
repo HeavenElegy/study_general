@@ -18,16 +18,14 @@ public class Recv {
 
 	public static void main(String[] args) throws Exception {
 
-		// 创建连接工厂
 		ConnectionFactory factory = new ConnectionFactory();
-		// 设置主机
 		factory.setHost("localhost");
 		// 创建连接(这里没有未使用try-with-resource)。因为在会被直接关闭，而本次的方法中，需要线程一直在后台等待进行异步获取数据
 		Connection connection = factory.newConnection();
 		// 创建通道
 		Channel channel = connection.createChannel();
 
-		// 申请队列(按照官网教程中所说，这是为了确保在消费者先于生产者启动时，确保目标队列的存在)同Sen
+		// 进行队列声明(必须)。否则会导致发送成功但Rabbitmq抛弃请求(按照官网教程中所说，这是为了确保在消费者先于生产者启动时，确保目标队列的存在)
 		channel.queueDeclare(
 			QUEUE_NAME,
 			false,
@@ -41,13 +39,9 @@ public class Recv {
 
 		// 绑定消费者
 		channel.basicConsume(
-			// 队列名
 			QUEUE_NAME,
-			// TODO 未知
 			true,
-			// 回调
 			callback,
-			// TODO 未知
 			consumerTag -> {}
 		);
 
