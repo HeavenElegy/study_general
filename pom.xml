@@ -91,6 +91,7 @@
 		<module>message_broker</module>
 		<module>jmeter</module>
 		<module>netty</module>
+		<module>multithreading</module>
 	</modules>
 
 	<build>
