@@ -92,6 +92,8 @@
 		<module>jmeter</module>
 		<module>netty</module>
 		<module>multithreading</module>
+        <module>common</module>
+		<module>sort</module>
 	</modules>
 
 	<build>

@@ -26,7 +26,7 @@ public class MultithreadingExample {
 
 		// 能运行到此处说明num必有值。
 		// 这里有两种情况。
-		// 1. 在未设置值时进入此方法(hasSet=false)。此时if条件语句主动进入等待状态，而后被put方法唤醒，停止阻塞
+		// 1. 在未设置值时进入此方法(hasSet=false)。此时if条件语句主动进入等待状态，而后被add方法唤醒，停止阻塞
 		// 2. 在已设置值时直接进入此方法(hasSet=true)。运行到到此位置
 
 		System.out.println("get: " + "获取值-> " + num);
@@ -46,7 +46,7 @@ public class MultithreadingExample {
 	 * <p>同时在内部，hasSet=true时，进行等待</p>
 	 */
 	synchronized void add() throws InterruptedException {
-		System.out.println("add: " + "进入put方法");
+		System.out.println("add: " + "进入add方法");
 
 		if(hasSet) {
 			// 如果已经设置过值。则进入等待状态。知道被唤醒

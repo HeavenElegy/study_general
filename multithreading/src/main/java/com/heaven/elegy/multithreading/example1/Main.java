@@ -10,8 +10,8 @@ public class Main {
 		MultithreadingExample queueBuffer = new MultithreadingExample();
 		new Producer(queueBuffer);
 		new Customer(queueBuffer);
-		new Producer(queueBuffer);
-		new Customer(queueBuffer);
+//		new Producer(queueBuffer);
+//		new Customer(queueBuffer);
 	}
 
 }
