@@ -1,17 +1,19 @@
 package com.heaven.elegy.sort;
 
-import java.util.Arrays;
-
 /**
  * 选择排序
  * <p>O(n^2)</p>
  *
  * @author lixiaoxi
  */
-public class SelectionSort extends InterfaceSort {
+public class SelectionSort extends ManagerSort {
+
+    public SelectionSort(String[] args) {
+        super(args);
+    }
 
     public static void main(String[] args) {
-        InterfaceSort sort = new SelectionSort();
+        ManagerSort sort = new SelectionSort(args);
         sort.sort();
     }
 

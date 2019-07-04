@@ -1,19 +1,20 @@
 package com.heaven.elegy.sort;
 
-import java.util.Arrays;
-
 /**
  * 冒泡排序
  * <p>时间复杂度O(n^2)</p>
  *
  * @author lixiaoxi
  */
-public class BubbleSort extends InterfaceSort {
+public class BubbleSort extends ManagerSort {
 
 
+    public BubbleSort(String[] args) {
+        super(args);
+    }
 
     public static void main(String[] args) {
-        InterfaceSort sort = new BubbleSort();
+        ManagerSort sort = new BubbleSort(args);
         sort.sort();
     }
 

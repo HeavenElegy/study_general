@@ -1,18 +1,20 @@
 package com.heaven.elegy.sort;
 
-import java.util.Arrays;
-
 /**
  * 插入排序
  * <p>O(n^2)</p>
  *
  * @author lixiaoxi
  */
-public class InsertionSort extends InterfaceSort {
+public class InsertionSort extends ManagerSort {
 
+
+    public InsertionSort(String[] args) {
+        super(args);
+    }
 
     public static void main(String[] args) {
-        InterfaceSort sort = new InsertionSort();
+        ManagerSort sort = new InsertionSort(args);
         sort.sort();
     }
 

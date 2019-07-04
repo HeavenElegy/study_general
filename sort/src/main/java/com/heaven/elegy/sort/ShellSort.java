@@ -1,29 +1,27 @@
 package com.heaven.elegy.sort;
 
-import java.util.Arrays;
 
 /**
  * 希尔排序
  *
  * @author lixiaoxi
  */
-public class ShellSort extends InterfaceSort {
+public class ShellSort extends ManagerSort {
 
 
-    public ShellSort() {
-
+    public ShellSort(String[] args) {
+        super(args);
     }
 
-
     public static void main(String[] args) {
-        InterfaceSort sort = new ShellSort();
+        ManagerSort sort = new ShellSort(args);
         sort.sort();
     }
 
     @Override
     void doSort() {
 
-        for (int number = stepLengthN2(arr.length); number >= 1; number = stepLengthN2(number)) {
+        for (int number = stepLength2k(arr.length); number >= 1; number = stepLength2k(number)) {
 
             showByStep(number);
 //            System.out.println("----------------------------------");

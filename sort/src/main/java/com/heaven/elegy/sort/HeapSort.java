@@ -1,16 +1,18 @@
 package com.heaven.elegy.sort;
 
-import java.util.Arrays;
 
 /**
  * @author lixiaoxi
  */
-public class HeapSort extends InterfaceSort {
+public class HeapSort extends ManagerSort {
 
 
+    public HeapSort(String[] args) {
+        super(args);
+    }
 
     public static void main(String[] args) {
-        InterfaceSort sort = new HeapSort();
+        ManagerSort sort = new HeapSort(args);
         sort.sort();
 //        System.out.println(Arrays.toString(sort.arr));
     }
