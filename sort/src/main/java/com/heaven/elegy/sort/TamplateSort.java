@@ -1,7 +1,7 @@
 package com.heaven.elegy.sort;
 
 /**
- * <h2>选择排序</h2>
+ * <h2>格式模板</h2>
  * <table>
  *     <tr>
  *         <td><b>类型</b></td>
@@ -9,7 +9,7 @@ package com.heaven.elegy.sort;
  *     </tr>
  *     <tr>
  *         <td><b>时间复杂度</b></td>
- *         <td>O(n^2)</td>
+ *         <td></td>
  *     </tr>
  *     <tr>
  *         <td><b>稳定性</b></td>
@@ -35,35 +35,19 @@ package com.heaven.elegy.sort;
  *         </td>
  *     </tr>
  * </table>
+ *
  * @author lixiaoxi
  */
-public class SelectionSort extends ManagerSort {
-
-    public SelectionSort(String[] args) {
+public abstract class TamplateSort extends ManagerSort{
+    public TamplateSort(String[] args) {
         super(args);
     }
 
-    public static void main(String[] args) {
-        ManagerSort sort = new SelectionSort(args);
-        sort.sort();
+    public TamplateSort(int length) {
+        super(length);
     }
 
-    @Override
-    void doSort() {
-        for (int i = 0; i < arr.length; i++) {
-            int min = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j] < arr[min]) {
-                    min = j;
-                }
-            }
-
-            if(min != i) {
-                int temp = arr[i];
-                arr[i] = arr[min];
-                arr[min] = temp;
-            }
-
-        }
+    public TamplateSort(int[] arr) {
+        super(arr);
     }
 }

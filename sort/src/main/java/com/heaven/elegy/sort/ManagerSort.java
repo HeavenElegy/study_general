@@ -4,14 +4,30 @@ import org.apache.commons.lang3.RandomUtils;
 
 
 /**
+ * 排序基类。用以定义一些行为规范
  * @author lixiaoxi
  */
 public abstract class ManagerSort {
 
+    /**
+     * 待排序数组
+     */
     protected int[] arr;
-    protected long initData;
+    /**
+     * 开始时间
+     */
     protected long startTime;
+    /**
+     * 初始化完成时间
+     */
+    protected long initData;
+    /**
+     * 排序完成时间
+     */
     protected long sortData;
+    /**
+     * 初始化数组长度
+     */
     private int length = 10000;
 
     /**
@@ -44,12 +60,19 @@ public abstract class ManagerSort {
         init();
     }
 
+    /**
+     * 构造方法，使用指定数组进行初始化
+     * @param arr
+     */
     public ManagerSort(int [] arr) {
         this.arr = arr;
         init();
     }
 
-    protected void sort(){
+    /**
+     * 开始执行排序
+     */
+    public void sort(){
 
         System.out.println("开始排序");
         doSort();
@@ -57,6 +80,9 @@ public abstract class ManagerSort {
         System.out.println("排序完成。 用时: " + ((sortData - initData)) + "毫秒");
     }
 
+    /**
+     * 初始化各数据
+     */
     private void init() {
         startTime = System.currentTimeMillis();
         if(arr == null) {
@@ -70,5 +96,8 @@ public abstract class ManagerSort {
         initData = System.currentTimeMillis();
     }
 
+    /**
+     * 排序实现
+     */
     abstract void doSort();
 }

@@ -3,7 +3,40 @@ package com.heaven.elegy.sort;
 import java.util.Arrays;
 
 /**
- * 快速排序
+ * <h2>快速排序</h2>
+ * <table>
+ *     <tr>
+ *         <td><b>类型</b></td>
+ *         <td></td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>时间复杂度</b></td>
+ *         <td></td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>稳定性</b></td>
+ *         <td></td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>时间复杂度的计算</b></td>
+ *         <td></td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>描述</b></td>
+ *         <td></td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>内部变化顺序</b></td>
+ *         <td>
+ *              <ol>
+ *                  <li>3,2,1</li>
+ *                  <li>2,3,1</li>
+ *                  <li>2,1,3</li>
+ *                  <li>1,2,3</li>
+ *              </ol>
+ *         </td>
+ *     </tr>
+ * </table>
  *
  * @author lixiaoxi
  */
@@ -22,7 +55,7 @@ public class QuickSort extends ManagerSort {
     }
 
     public static void main(String[] args) {
-        QuickSort sort = new QuickSort(10000000);
+        QuickSort sort = new QuickSort(args);
         sort.sort();
 //        System.out.println(Arrays.toString(sort.arr));
     }

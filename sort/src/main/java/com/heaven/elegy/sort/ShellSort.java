@@ -2,8 +2,36 @@ package com.heaven.elegy.sort;
 
 
 /**
- * 希尔排序
- *
+ * <h2>希尔排序</h2>
+ * <table>
+ *     <tr>
+ *         <td><b>类型</b></td>
+ *         <td>插入排序</td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>时间复杂度</b></td>
+ *         <td>n/i^2=O(n^2), 2^k-1=O(n^3/2), 2^i3^j=O(nlogn)</td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>稳定性</b></td>
+ *         <td>不稳定</td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>时间复杂度的计算</b></td>
+ *         <td></td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>描述</b></td>
+ *         <td></td>
+ *     </tr>
+ *     <tr>
+ *         <td><b>内部变化顺序</b></td>
+ *         <td>
+ *              <ol>
+ *              </ol>
+ *         </td>
+ *     </tr>
+ * </table>
  * @author lixiaoxi
  */
 public class ShellSort extends ManagerSort {
