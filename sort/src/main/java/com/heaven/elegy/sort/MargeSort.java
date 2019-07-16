@@ -99,7 +99,7 @@ public class MargeSort extends ManagerSort {
         m1(start1, end1);
         m1(start2, end2);
 
-        // 进入到此行时，当前所迭代的分制两侧均已排序完成。
+        // 进入到此行时，当前所迭代的分支已经最小化或以排序完成。
         int k = head;
         while (start1 <= end1 && start2 <= end2) {
             temp[k++] = arr[start1] < arr[start2]? arr[start1++]:arr[start2++];
