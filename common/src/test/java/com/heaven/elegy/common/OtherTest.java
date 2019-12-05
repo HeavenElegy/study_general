@@ -2169,7 +2169,7 @@ public class OtherTest {
 				lastTail.next = lastTail.next.next;
 			}
 		} else if (n == 0) {
-			if(lastTail.next == null)
+			if (lastTail.next == null)
 				return null;
 			else
 				return lastTail.next;
@@ -2182,7 +2182,7 @@ public class OtherTest {
 	@Test
 	public void test39() {
 
-		class Problem{
+		class Problem {
 			String problem;
 			boolean answer;
 
@@ -2207,30 +2207,30 @@ public class OtherTest {
 
 	public boolean isValid(String s) {
 
-		if(s.length()%2 == 1) return false;
+		if (s.length() % 2 == 1) return false;
 
 		Map<Character, Character> map = new HashMap<>();
-		map.put(')','(');
-		map.put('}','{');
-		map.put(']','[');
+		map.put(')', '(');
+		map.put('}', '{');
+		map.put(']', '[');
 
 		ArrayDeque<Character> stack = new ArrayDeque<>();
 
 		// 将s转换成字节并全部压入左侧栈中
-		for(char c: s.toCharArray()) {
+		for (char c : s.toCharArray()) {
 
-			if(map.containsKey(c)) {
+			if (map.containsKey(c)) {
 				// 栈如果是空的,直接返回false
-				if(stack.isEmpty()) return false;
+				if (stack.isEmpty()) return false;
 
 				// 获取对称字符
 				Character expect = map.get(c);
 				// 弹出栈顶元素,进行匹配
 				Character head = stack.removeFirst();
-				if(!expect.equals(head)) {
+				if (!expect.equals(head)) {
 					return false;
 				}
-			}else {
+			} else {
 				// 进行压栈
 				stack.addFirst(c);
 			}
@@ -2263,7 +2263,7 @@ public class OtherTest {
 
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
-		if(l1 == null && l2 == null) return null;
+		if (l1 == null && l2 == null) return null;
 
 		ListNode head = null, tail = null;
 
@@ -2271,33 +2271,33 @@ public class OtherTest {
 
 			ListNode e;
 
-			if(l1 != null && l2 != null) {
-				if(l1.val <= l2.val) {
+			if (l1 != null && l2 != null) {
+				if (l1.val <= l2.val) {
 					e = l1;
 					l1 = l1.next;
-				}else {
+				} else {
 					e = l2;
 					l2 = l2.next;
 				}
-			}else {
+			} else {
 				if (l1 != null) {
 					e = l1;
 					l1 = l1.next;
-				}else {
+				} else {
 					e = l2;
 					l2 = l2.next;
 				}
 			}
 
 
-			if(tail == null) {
+			if (tail == null) {
 				head = e;
-			}else {
+			} else {
 				tail.next = e;
 			}
 			tail = e;
 
-		}while (l1 != null || l2 != null);
+		} while (l1 != null || l2 != null);
 
 		return head;
 	}
@@ -2322,43 +2322,208 @@ public class OtherTest {
 	}
 
 	public List<String> generateParenthesis(int n) {
-
-		Map<String, int[]> result = new LinkedHashMap<>();
-
-		String original;
-		StringBuilder stringBuilder = new StringBuilder();
-		for(int i = 0; i < n; i ++) {
-			stringBuilder.insert(stringBuilder.length()/2, "()");
-		}
-		original = stringBuilder.toString();
-		result.put(original, null);
-
-		char[] originalCharArr = original.toCharArray();
-
-		int l = 1, r = originalCharArr.length - 1;
-		while (l < r) {
-
-			// 两侧交换
-			char[] internalCharArr = Arrays.copyOf(originalCharArr, original.length());
-			char temp = internalCharArr[l];
-			internalCharArr[l] = internalCharArr[r];
-			internalCharArr[r] = temp;
-
-			// 两侧交换
-
-			// 左侧 -1
-
-			// 右侧 -1
-
-
-
-
-		}
-
-
-		return new ArrayList<>(result.keySet());
+		List<String> result = new ArrayList<>();
+		gp1(n, n, "", result);
+		return result;
 	}
 
+	public void gp1(int i, int j, String str, List<String> result) {
+
+		if (i == 0 && j == 0) {
+			result.add(str);
+			return;
+		}
+
+		if (i > 0) {
+			gp1(i - 1, j, str + "(", result);
+		}
+
+		if (j > 0 && i < j) {
+			gp1(i, j - 1, str + ")", result);
+		}
+	}
+
+
+	@Test
+	public void test42() {
+		class Problem {
+			List<ListNode> problem;
+			ListNode answer;
+
+			public Problem(List<ListNode> problem, ListNode answer) {
+				this.problem = problem;
+				this.answer = answer;
+			}
+		}
+
+		List<Problem> list = new ArrayList<>();
+		list.add(new Problem(Arrays.asList(new ListNode("1->4->5"), new ListNode("1->3->4"), new ListNode("2->6")), new ListNode("1->1->2->3->4->4->5->6")));
+		list.forEach(problem -> System.out.println(String.format("problem: %s, answer: %s, result: %s", problem.problem, problem.answer, mergeKLists(problem.problem.toArray(new ListNode[]{})))));
+
+	}
+
+	public ListNode mergeKLists(ListNode[] lists) {
+		if(lists.length == 0) return null;
+		if(lists.length == 1) return lists[0];
+
+		List<Integer> valList = new ArrayList<>();
+		for (ListNode l : lists) {
+			do {
+				if(l != null)
+					valList.add(l.val);
+				else
+					break;
+			}while ((l = l.next) != null);
+		}
+
+		Collections.sort(valList);
+
+		ListNode head = null, tail = null;
+
+		for(int val: valList) {
+
+			ListNode node = new ListNode(val);
+			if(tail == null) {
+				head = node;
+			}else {
+				tail.next = node;
+			}
+			tail = node;
+		}
+
+		return head;
+	}
+
+
+	@Test
+	public void test43() {
+
+		class Problem{
+			ListNode problem;
+			ListNode answer;
+
+			public Problem(ListNode problem, ListNode answer) {
+				this.problem = problem;
+				this.answer = answer;
+			}
+		}
+
+		List<Problem> list = new ArrayList<>();
+		list.add(new Problem(new ListNode("1->2->3->4"), new ListNode("2->1->4->3")));
+
+		list.forEach(problem -> System.out.println(String.format("problem: %s, answer: %s, result: %s", problem.problem.toString(), problem.answer, swapPairs(problem.problem))));
+
+	}
+
+	public ListNode swapPairs(ListNode head) {
+
+		if(head == null || head.next == null)
+			return head;
+
+		// 交换当前与下一个元素
+		ListNode tail = head.next;
+		head.next = swapPairs(tail.next);
+		tail.next = head;
+
+		return tail;
+	}
+
+	@Test
+	public void test44() {
+
+		class Problem{
+			ListNode problem;
+			int k;
+			ListNode answer;
+
+			public Problem(ListNode problem, int k, ListNode answer) {
+				this.problem = problem;
+				this.k = k;
+				this.answer = answer;
+			}
+		}
+
+		List<Problem> list = new ArrayList<>();
+//		list.add(new Problem(new ListNode("1->2->3->4->5"), 2, new ListNode("2->1->4->3->5")));
+		list.add(new Problem(new ListNode("1->2->3->4->5"), 3, new ListNode("3->2->1->4->5")));
+		list.add(new Problem(new ListNode("1->2->3->4"), 4, new ListNode("4->3->2->1")));
+
+		list.forEach(problem -> System.out.println(String.format("problem: %s, k: %s, answer: %s, result: %s", problem.problem.toString(), problem.k, problem.answer, reverseKGroup2(problem.problem, problem.k))));
+
+	}
+
+	public ListNode reverseKGroup1(ListNode head, int k) {
+
+		if(head == null) return null;
+
+		ListNode tail = null, middle = null;
+
+		// 寻找用于交换的尾部
+		// 获取头部元素与尾部元素之间的最后一个元素
+		for(int i = k; i > 1; i --) {
+			if(tail == null) {
+				tail = head.next;
+			}else {
+				middle = tail;
+				tail = tail.next;
+			}
+		}
+
+		// 没有指定元素,直接返回
+		if(tail == null) return head;
+
+		// 缓存子节点(下一次递归用)
+		ListNode sub = tail.next;
+
+		// 进行元素交换
+		if(tail != head.next) {
+			// 这里针对k>2的情况,额外添加middle的交换
+			tail.next = head.next;
+			middle.next = head;
+		}else {
+			// 对于k=2,使用直接头尾交换
+			tail.next = head;
+		}
+
+		// 连接子级元素
+		head.next = reverseKGroup1(sub, k);
+		return tail;
+	}
+
+	public ListNode reverseKGroup2(ListNode head, int k) {
+
+		if(head == null) return null;
+
+		ListNode sub = head, tail = head;
+
+		// 进行分组
+		int i = 1;
+		while (i <= k && tail != null) {
+
+			// 判断是否完成分组
+			if(i == k) {
+				// 完成分组,进行递归
+				rkg2(sub, k);
+				// 重置游标
+				i = 1;
+				sub = tail.next;
+			}else {
+				i++;
+			}
+
+			tail = tail.next;
+
+		}
+
+
+
+
+		return null;
+	}
+	private void rkg2(ListNode head, int k) {
+
+
+	}
 
 	public static final ThreadLocal<Long> START_TIME = new ThreadLocal<>();
 	public static final ThreadLocal<TimeUnit> TIME_UNIT = new ThreadLocal<>();
