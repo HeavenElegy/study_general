@@ -45,8 +45,16 @@ public class InsertionSort extends ManagerSort {
         super(args);
     }
 
+    public InsertionSort(int length) {
+        super(length);
+    }
+
+    public InsertionSort(int[] arr) {
+        super(arr);
+    }
+
     public static void main(String[] args) {
-        ManagerSort sort = new InsertionSort(args);
+        ManagerSort sort = new InsertionSort(10000000);
         sort.sort();
     }
 

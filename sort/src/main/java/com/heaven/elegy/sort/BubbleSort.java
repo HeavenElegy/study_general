@@ -45,8 +45,16 @@ public class BubbleSort extends ManagerSort {
         super(args);
     }
 
+    public BubbleSort(int length) {
+        super(length);
+    }
+
+    public BubbleSort(int[] arr) {
+        super(arr);
+    }
+
     public static void main(String[] args) {
-        ManagerSort sort = new BubbleSort(args);
+        ManagerSort sort = new BubbleSort(100000);
         sort.sort();
     }
 

@@ -94,7 +94,8 @@
 		<module>multithreading</module>
         <module>common</module>
 		<module>sort</module>
-	</modules>
+        <module>spring</module>
+    </modules>
 
 	<build>
 		<plugins>

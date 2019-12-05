@@ -62,9 +62,8 @@ public class HeapSort extends ManagerSort {
     }
 
     public static void main(String[] args) {
-        ManagerSort sort = new HeapSort(10);
+        ManagerSort sort = new HeapSort(100000000);
         sort.sort();
-        System.out.println(Arrays.toString(sort.arr));
     }
 
     /**
