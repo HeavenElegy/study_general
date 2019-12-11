@@ -2087,9 +2087,14 @@ public class OtherTest {
 
 		public ListNode(String raw) {
 
+			if(raw.trim().length() == 0){
+				this.val = -1;
+				return;
+			}
+
 			ListNode head = null, tail = null;
 
-			String[] split = raw.trim().split("->");
+			String[] split = raw.trim().split("->|,");
 			this.val = Integer.parseInt(split[0]);
 			for (int i = 1; i < split.length; i++) {
 				String s = split[i];
@@ -2116,7 +2121,7 @@ public class OtherTest {
 				if (result.length() != 0)
 					result.append("->");
 				result.append(listNode.val);
-			} while ((listNode = listNode.next) != null);
+			} while ((listNode = listNode.next) != null && result.length() < 1000);
 			return result.toString();
 		}
 	}
@@ -2444,9 +2449,16 @@ public class OtherTest {
 		}
 
 		List<Problem> list = new ArrayList<>();
-//		list.add(new Problem(new ListNode("1->2->3->4->5"), 2, new ListNode("2->1->4->3->5")));
+		list.add(new Problem(new ListNode("1->2->3->4->5"), 2, new ListNode("2->1->4->3->5")));
 		list.add(new Problem(new ListNode("1->2->3->4->5"), 3, new ListNode("3->2->1->4->5")));
+		list.add(new Problem(new ListNode("1->2->3->4->5->6->7->8"), 8, new ListNode("")));
 		list.add(new Problem(new ListNode("1->2->3->4"), 4, new ListNode("4->3->2->1")));
+		list.add(new Problem(new ListNode("1->2->3->4->5"), 1, new ListNode("1->2->3->4->5")));
+		list.add(new Problem(new ListNode("1->2->3"), 4, new ListNode("1->2->3")));
+		list.add(new Problem(new ListNode("1->2->3->4"), 5, new ListNode("1->2->3->4")));
+		list.add(new Problem(new ListNode("1->2->3->4->5"), 6, new ListNode("1->2->3->4->5")));
+		list.add(new Problem(new ListNode("1->2->3->4->5->6"), 2, new ListNode("")));
+		list.add(new Problem(new ListNode("5,62,17,20,2,30,58,40,94,78,31,62,21,92,30,61,10,54,88,63,35,89,24,33,48,31,35,46,35,6,87,40,68,57,60,22,87,70,63,33,0,94,95,22,38,77,35,48,31,24,63,19,65,88,4,14,71,39,60,6,45,48,99,65,57,11,88,44,82,51,77,82,97,25,56,35,2,92,36,86,68,99,5,33,39,9,99,11,0,60,69,97,60,68,62,17,32,50,13,14,1,42,48,98,67,5,86,22,97,74,8,65,25,65,50,65,26,50,28,26,10,97,23,22,18,85,91,2,88,56,16,41,98,64,92,18,21,78,92,18,4,0,83,29,17,34,94,43,36,74,69,98,24,44,20,94,29,63,96,69,19,12,11,69,28,3,87,50,33,31,20,37,31,56,18,48,42,13,43,78,39,12,76,63,56,48,57,38,11"), 74, new ListNode("")));
 
 		list.forEach(problem -> System.out.println(String.format("problem: %s, k: %s, answer: %s, result: %s", problem.problem.toString(), problem.k, problem.answer, reverseKGroup2(problem.problem, problem.k))));
 
@@ -2492,37 +2504,84 @@ public class OtherTest {
 
 	public ListNode reverseKGroup2(ListNode head, int k) {
 
-		if(head == null) return null;
+		if(head == null || head.next == null || k == 1) return head;
 
-		ListNode sub = head, tail = head;
+		ListNode result = null;
+		ListNode tail = null;
 
-		// 进行分组
-		int i = 1;
-		while (i <= k && tail != null) {
+		int[] status = new int[1];
 
-			// 判断是否完成分组
-			if(i == k) {
-				// 完成分组,进行递归
-				rkg2(sub, k);
-				// 重置游标
-				i = 1;
-				sub = tail.next;
+		do {
+			if(tail == null) {
+				tail = head;
+				result = rkg2(head, k/2, k%2 == 1, status);
+				head = tail.next;
 			}else {
-				i++;
+				ListNode _tail = head.next;
+				ListNode _result;
+				_result = rkg2(head, k/2, k%2 == 1, status);
+				if(_result == null) return result;
+				tail.next = _result;
+
+				if(_tail.next == null || _tail.next.next == null) return result;
+
+				head = _tail.next.next;
+
+				tail = _tail.next;
 			}
+		}while (head != null && status[0] == 0);
 
-			tail = tail.next;
+		return result;
+	}
 
+	private ListNode rkg2(ListNode head, int h, boolean odd, int[] status) {
+		if(head == null || head.next == null) return null;
+		if(h == 1){
+			if(odd) {
+				if(head.next.next == null){
+					status[0] = 1;
+					return head;
+				}
+
+				ListNode middle = head.next, tail = middle.next;
+
+				head.next = tail.next;
+				middle.next = head;
+				tail.next = middle;
+				return tail;
+			}else{
+				ListNode tail0 = head.next;
+				head.next = tail0.next;
+				tail0.next = head;
+				return tail0;
+			}
 		}
 
+		// 获取子节点
+		// 子级尾部引用.初始为头部,子级处理完成后为尾部.这是唯一访问子级尾部的引用
+		ListNode subTail = head.next;
+
+		// 子级迭代
+		ListNode sub = rkg2(subTail, h - 1, odd, status);
+
+		// 子级下一个元素引用,同时也是返回值.这个值会在后续元素交换时替换掉.所以先存着
+		ListNode subNext = subTail.next;
+
+		// 一般的还原处理
+		if(subNext == null || status[0] == 1) {
+			// 复原子级
+			status[0] = 0;
+			rkg2(sub, h - 1, odd, status);
+			status[0] = 1;
+			return head;
+		}
+		// 元素交换
+		head.next = subTail.next.next;
+		subTail.next = head;
+		subNext.next = sub;
 
 
-
-		return null;
-	}
-	private void rkg2(ListNode head, int k) {
-
-
+		return subNext;
 	}
 
 	public static final ThreadLocal<Long> START_TIME = new ThreadLocal<>();
